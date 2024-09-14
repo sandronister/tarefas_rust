@@ -1,19 +1,19 @@
-fn count(num : i32){
-    for i in 1..num {
-        println!("Contando ...{}", i);
-    }
+
+fn get_major(list :&Vec<i32>) -> i32 {
+    let mut major = list[0];
+     
+     for item in list.iter().skip(1) {
+        if item > &major{
+            major = *item;
+        }
+     }
+    major
 }
 
-fn down(num : i32){
-    for i in (1..num).rev() {
-        println!("Contando ...{}", i);
-    }
-}
 
 fn main() {
 
-    count(10);
-    down(10);
-    
-    println!("Hello, world!");
+    let list = vec![1, 2, 3, 9, 5, 5, 5, 5, 5, 8, 5, 5, 5];
+    let major = get_major(&list);
+    println!("Majority element is: {}", major);
 }
