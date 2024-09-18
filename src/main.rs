@@ -1,27 +1,31 @@
-use std::io;
 
-fn search_char(n: &str) -> bool {
-    let mut _chars: Vec<char> = Vec::new();
-    for i in n.trim().chars() {
-        if _chars.contains(&i) {
-            return true;
-        }
-        _chars.push(i);
-    }
-    false
+fn is_perm(word1 : &str, word2 : &str) -> bool {
+    let mut word1 = word1.chars().collect::<Vec<char>>();
+    let mut word2 = word2.chars().collect::<Vec<char>>();
+
+    word1.sort();
+    word2.sort();
+
+    word1 == word2
 }
 
 fn main() {
-        let mut n = String::new();
-        println!("Write the word ");
-        io::stdin().read_line(&mut n).expect("Failed to read line");
+       let mut w1 = String::new();
+        let mut w2 = String::new();
 
-        let result = search_char(&n);
+        println!("Enter the first word: ");
+        std::io::stdin().read_line(&mut w1).unwrap();
+        let w1 = w1.trim(); 
 
-        if result {
-            println!("The word not contains only characters");
+        println!("Enter the second word: ");
+        std::io::stdin().read_line(&mut w2).unwrap();
+        let w2 = w2.trim();
+
+        
+
+        if is_perm(&w1, &w2) {
+            println!("{} and {} are permutations of each other", w1, w2);
         } else {
-            println!("The word not really contains only characters");
+            println!("{} and {} are not permutations of each other", w1, w2);
         }
-       
 }
