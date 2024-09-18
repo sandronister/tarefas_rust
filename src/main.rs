@@ -1,26 +1,21 @@
+use core::f32;
 use std::io;
 
 
-fn table_mult(number_i32: i32) -> [i32; 11] {
-    let mut table = [1; 11];
-    for i in 0..11 {
-        if i != 0 {
-            table[i] = number_i32 * (i as i32);
-        }
-       
+fn real_sum(n: &[f32]) -> f32 {
+    let mut sum = 0.0;
+    for i in n.iter() {
+        sum += i;
     }
-    table
+    sum
 }
 
 
 fn main() {
-    println!("Enter a number: ");
-    let mut read_number    = String::new();
-    io::stdin().read_line(&mut read_number).expect("Failed to read line");
-    let number = read_number.trim().parse::<i32>().unwrap();
-    let table = table_mult(number);
-    for i in 1..11 {
-        println!("{} x {} = {}", number, i, table[i]);
-    }
-   
+        let mut n = String::new();
+        println!("Enter the numbers separated by space: ");
+        io::stdin().read_line(&mut n).expect("Failed to read line");
+        let n: Vec<f32> = n.trim().split_whitespace().map(|num| num.parse().unwrap()).collect();
+        let sum = real_sum(&n);
+        println!("The sum of the numbers is: {}", sum);
 }
