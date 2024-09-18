@@ -1,7 +1,7 @@
 use std::io;
 
 fn search_char(n: &str) -> bool {
-    let _chars: &[char] = &[];
+    let mut _chars: Vec<char> = Vec::new();
     for i in n.trim().chars() {
         if _chars.contains(&i) {
             return true;
